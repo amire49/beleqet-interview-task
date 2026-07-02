@@ -1,6 +1,6 @@
 # Beleqet Backend — NestJS API
 
-Production-ready NestJS backend for the Beleqet hiring & freelance platform.
+ይህ ፕሮጀክት በ NestJS እና በ PostgreSQL ላይ የተገነባ፣ ለ "Beleqet" የሥራ እና የፍሪላንስ መድረክ (Hiring & Freelance Platform) የተዘጋጀ ሙሉ (Production-ready) የኋላ መተግበሪያ (Backend API) ነው። ይህ መድረክ ቀጣሪዎችን እና ፈላጊዎችን በኤአይ (AI) ታግዞ የሚያገናኝ ሲሆን፣ የገንዘብ ክፍያ አስተዳደርን (Escrow) እና የስራ ፍሰት አውቶሜሽንን (Event-Driven Workflow) ያካተተ ነው።
 
 ## Quick Start
 
@@ -186,6 +186,78 @@ Wallet
 ```
 
 🔒 = requires `Authorization: Bearer <access_token>`
+
+### Payload Examples
+
+**1. Register (`POST /auth/register`)**
+```json
+{
+  "email": "user@example.com",
+  "password": "StrongPassword123!",
+  "firstName": "Abebe",
+  "lastName": "Kebede",
+  "role": "JOB_SEEKER" 
+}
+```
+
+**2. Create Job (`POST /jobs`)**
+```json
+{
+  "title": "Senior Frontend Developer",
+  "description": "We are looking for an experienced React developer...",
+  "requirements": ["React", "TypeScript", "3+ years experience"],
+  "location": "Addis Ababa, Ethiopia",
+  "jobType": "FULL_TIME",
+  "salaryMin": 30000,
+  "salaryMax": 50000,
+  "categoryId": "uuid-of-category"
+}
+```
+
+**3. Submit Application (`POST /applications`)**
+```json
+{
+  "jobId": "uuid-of-job",
+  "coverLetter": "I have 5 years of experience building scalable frontends...",
+  "resumeUrl": "https://example.com/resume.pdf"
+}
+```
+
+**4. Create Freelance Gig (`POST /freelance/jobs`)**
+```json
+{
+  "title": "E-commerce App UI Design",
+  "description": "Need a Figma design for a 5-page e-commerce app.",
+  "budget": 15000,
+  "deadline": "2026-08-01T00:00:00Z",
+  "categoryId": "uuid-of-freelance-category"
+}
+```
+
+**5. Login (`POST /auth/login`)**
+```json
+{
+  "email": "user@example.com",
+  "password": "StrongPassword123!"
+}
+```
+
+**6. Create Company Profile (`POST /users/company`)**
+```json
+{
+  "name": "Tech Solutions PLC",
+  "logoUrl": "https://example.com/logo.png",
+  "website": "https://techsolutions.com",
+  "description": "A leading software development company..."
+}
+```
+
+**7. Update Application Status (`PATCH /applications/:id/status`)**
+```json
+{
+  "status": "SHORTLISTED" // e.g., SHORTLISTED, REJECTED, HIRED
+}
+```
 
 ---
 
